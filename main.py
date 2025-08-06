@@ -52,3 +52,4 @@ def send_mail_from_outlook(recipient_email, subject, body):
 
 print("Getting excel file from sharepoint...")
 excel_file = get_excel(config_loaded_json["sharepoint_excel_url"],config_loaded_json["sharepoint_username"],config_loaded_json["sharepoint_password"])
+#dooo tuka sme
