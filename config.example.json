@@ -1,0 +1,7 @@
+{
+    "sharepoint_excel_url" : "example.com",
+    "sharepoint_username" : "@example",
+    "sharepoint_password" : "123456789",
+    "outlook_email" : "example@outlook.com",
+    "outlook_password" : "987654321"
+}
