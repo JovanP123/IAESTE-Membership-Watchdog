@@ -10,14 +10,21 @@ from email.mime.multipart import MIMEMultipart
 config_path = "config.json"
 config_loaded_json = None
 
+days_left_column_index = 4
+
+
 succesful_response_status_code = 200
 print("Reading config file...")
 try:
     f = open(config_path, "r")
     config_loaded_json = json.load(f)
 except FileNotFoundError:
-    print(f"Can't find {config_path}")
-    exit()
+    try:
+        f = open("config.example.json", "r")
+        config_loaded_json = json.load(f)
+    except FileNotFoundError:
+        print(f"Couldn't find {config_path} nor config.example.json...")
+        exit()
 
 def get_excel(url, username, password):
     session = requests.Session()
@@ -52,4 +59,15 @@ def send_mail_from_outlook(recipient_email, subject, body):
 
 print("Getting excel file from sharepoint...")
 excel_file = get_excel(config_loaded_json["sharepoint_excel_url"],config_loaded_json["sharepoint_username"],config_loaded_json["sharepoint_password"])
-#dooo tuka sme
+excel_file_array = excel_to_array(excel_file)
+
+members_count = 0
+at_member = 1
+while excel_file_array[0][at_member] != "":
+    at_member += 1
+    members_count += 1
+
+for i in range(1, members_count+1):
+    if excel_file_array[days_left_column_index][i] == "7":
+        #prati mejlcence
+
